@@ -811,11 +811,11 @@ section { padding: var(--space-xxl) 0; }
 
 @media (max-width: 720px) {
   .hero {
-    min-height: 90vh;
-    padding: var(--space-xl) 0;
+    min-height: 60vh;
+    padding: var(--space-l) 0;
   }
   .hero__slide {
-    background-size: cover;
+    background-size: 100% auto;
     background-position: center;
   }
 }
