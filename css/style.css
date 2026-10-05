@@ -218,7 +218,7 @@ section { padding: var(--space-xxl) 0; }
 
   .hero__slide {
     /* Zoom the architectural photo on narrow phones so it fills the card */
-    background-size: auto 120%;
+    background-size: auto 180%;
     background-position: center center;
   }
 }
