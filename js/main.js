@@ -1,3 +1,4 @@
+// ============ MOBILE NAV ============
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.site-nav');
 
@@ -10,7 +11,9 @@ if (toggle && nav) {
   nav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => nav.classList.remove('is-open'));
   });
-  // ============ PROJECT CAROUSEL ============
+}
+
+// ============ PROJECT CAROUSEL ============
 const carousel = document.querySelector('.carousel');
 
 if (carousel) {
@@ -35,7 +38,7 @@ if (carousel) {
   function next() { goTo(index + 1); }
   function prev() { goTo(index - 1); }
 
-  // --- Auto-slide every 6 seconds ---
+  // Auto-slide every 6 seconds
   function startAuto() {
     stopAuto();
     autoTimer = setInterval(next, 6000);
@@ -80,7 +83,7 @@ if (carousel) {
   carousel.addEventListener('mouseenter', stopAuto);
   carousel.addEventListener('mouseleave', startAuto);
 
-  // Pause when tab is hidden (saves CPU)
+  // Pause when tab is hidden
   document.addEventListener('visibilitychange', () => {
     document.hidden ? stopAuto() : startAuto();
   });
