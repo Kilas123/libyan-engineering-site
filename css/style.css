@@ -213,11 +213,12 @@ section { padding: var(--space-xxl) 0; }
 
 @media (max-width: 720px) {
   .hero {
-    min-height: 78vh;
+    min-height: 88vh;
   }
 
   .hero__slide {
-    background-size: cover;
+    /* Zoom the architectural photo on narrow phones so it fills the card */
+    background-size: auto 120%;
     background-position: center center;
   }
 }
