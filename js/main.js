@@ -22,6 +22,7 @@ if (carousel) {
   const totalEl = carousel.querySelector('[data-total]');
   const total = slides.length;
   let index = 0;
+  let autoTimer;
 
   totalEl.textContent = total;
 
@@ -31,13 +32,34 @@ if (carousel) {
     counter.textContent = index + 1;
   }
 
-  prevBtn.addEventListener('click', () => goTo(index - 1));
-  nextBtn.addEventListener('click', () => goTo(index + 1));
+  function next() { goTo(index + 1); }
+  function prev() { goTo(index - 1); }
+
+  // --- Auto-slide every 6 seconds ---
+  function startAuto() {
+    stopAuto();
+    autoTimer = setInterval(next, 6000);
+  }
+
+  function stopAuto() {
+    if (autoTimer) clearInterval(autoTimer);
+  }
+
+  // Restart timer whenever user manually navigates
+  function manual(fn) {
+    return () => {
+      fn();
+      startAuto();
+    };
+  }
+
+  prevBtn.addEventListener('click', manual(prev));
+  nextBtn.addEventListener('click', manual(next));
 
   // Keyboard arrows
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') goTo(index - 1);
-    if (e.key === 'ArrowRight') goTo(index + 1);
+    if (e.key === 'ArrowLeft') { prev(); startAuto(); }
+    if (e.key === 'ArrowRight') { next(); startAuto(); }
   });
 
   // Touch swipe on mobile
@@ -49,10 +71,20 @@ if (carousel) {
   track.addEventListener('touchend', e => {
     const diff = touchStartX - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) {
-      diff > 0 ? goTo(index + 1) : goTo(index - 1);
+      diff > 0 ? next() : prev();
+      startAuto();
     }
   });
 
+  // Pause on hover (desktop) so users can read
+  carousel.addEventListener('mouseenter', stopAuto);
+  carousel.addEventListener('mouseleave', startAuto);
+
+  // Pause when tab is hidden (saves CPU)
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? stopAuto() : startAuto();
+  });
+
   goTo(0);
-}
+  startAuto();
 }
