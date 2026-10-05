@@ -86,8 +86,8 @@ section { padding: var(--space-xxl) 0; }
 
 .brand {
   display: inline-flex;
-  align-items: baseline;
-  gap: .5rem;
+  align-items: center;
+  gap: .35rem;
   font-weight: 700;
   font-size: 1.125rem;
   letter-spacing: -.01em;
@@ -696,5 +696,107 @@ section { padding: var(--space-xxl) 0; }
   .project__inner {
     grid-template-columns: 1fr;
     gap: var(--space-m);
+  }
+}
+/* ============ FOOTER BRAND ============ */
+.site-footer .brand__mark {
+  width: 60px;
+  height: 60px;
+}
+
+.site-footer .brand__name {
+  font-size: 1.375rem;
+  letter-spacing: .02em;
+}
+.site-footer .brand {
+  gap: .05rem;
+}
+/* ============ PROJECT CAROUSEL ============ */
+.carousel {
+  position: relative;
+  padding: var(--space-l) 0 var(--space-xl);
+}
+
+.carousel__viewport {
+  overflow: hidden;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.carousel__track {
+  display: flex;
+  transition: transform .55s cubic-bezier(.4, 0, .2, 1);
+}
+
+.carousel__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  padding: 0 calc(var(--space-m) + 60px);
+}
+
+.carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+  border: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: opacity .15s, transform .15s;
+  z-index: 2;
+}
+
+.carousel__btn:hover {
+  opacity: .85;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carousel__btn:active {
+  transform: translateY(-50%) scale(.95);
+}
+
+.carousel__btn--prev { left: var(--space-m); }
+.carousel__btn--next { right: var(--space-m); }
+
+.carousel__counter {
+  text-align: center;
+  margin-top: var(--space-l);
+  font-size: .875rem;
+  color: var(--color-text-muted);
+  letter-spacing: .1em;
+  font-variant-numeric: tabular-nums;
+}
+
+.carousel__counter [data-current] {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .carousel__slide {
+    padding: 0 var(--space-m);
+  }
+  .carousel__btn {
+    width: 40px;
+    height: 40px;
+    top: auto;
+    bottom: -60px;
+    transform: none;
+  }
+  .carousel__btn:hover {
+    transform: scale(1.05);
+  }
+  .carousel__btn:active {
+    transform: scale(.95);
+  }
+  .carousel__btn--prev { left: calc(50% - 90px); }
+  .carousel__btn--next { right: calc(50% - 90px); }
+  .carousel__counter {
+    margin-top: var(--space-s);
   }
 }
