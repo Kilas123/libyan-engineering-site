@@ -808,3 +808,14 @@ section { padding: var(--space-xxl) 0; }
     margin-top: var(--space-s);
   }
 }
+
+@media (max-width: 720px) {
+  .hero {
+    min-height: 90vh;
+    padding: var(--space-xl) 0;
+  }
+  .hero__slide {
+    background-size: cover;
+    background-position: center;
+  }
+}
