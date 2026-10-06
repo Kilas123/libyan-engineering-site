@@ -12,67 +12,49 @@ if (toggle && nav) {
     link.addEventListener('click', () => nav.classList.remove('is-open'));
   });
 }
-// ============ PROJECT FILTERS ============
-const filterBtns = document.querySelectorAll('.filters__btn');
-const projectCards = document.querySelectorAll('.project-card');
 
-if (filterBtns.length && projectCards.length) {
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-
-      // Update active state
-      filterBtns.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-
-      // Show/hide cards
-      projectCards.forEach(card => {
-        if (filter === 'all' || card.dataset.category === filter) {
-          card.classList.remove('is-hidden');
-        } else {
-          card.classList.add('is-hidden');
-        }
-      });
-    });
-  });
-}
-
-// ============ PROJECT CAROUSEL ============
+// ============ PROJECT CAROUSEL + FILTERS ============
 const carousel = document.querySelector('.carousel');
 
 if (carousel) {
   const track = carousel.querySelector('.carousel__track');
-  const slides = carousel.querySelectorAll('.carousel__slide');
+  const allSlides = Array.from(carousel.querySelectorAll('.carousel__slide'));
   const prevBtn = carousel.querySelector('.carousel__btn--prev');
   const nextBtn = carousel.querySelector('.carousel__btn--next');
   const counter = carousel.querySelector('[data-current]');
   const totalEl = carousel.querySelector('[data-total]');
-  const total = slides.length;
+  const filterBtns = document.querySelectorAll('.filters__btn');
+
+  let visibleSlides = [...allSlides];
   let index = 0;
   let autoTimer;
 
-  totalEl.textContent = total;
+  function updateCounter() {
+    counter.textContent = index + 1;
+    totalEl.textContent = visibleSlides.length;
+  }
 
   function goTo(i) {
-    index = (i + total) % total;
+    if (visibleSlides.length === 0) return;
+    index = (i + visibleSlides.length) % visibleSlides.length;
     track.style.transform = `translateX(-${index * 100}%)`;
-    counter.textContent = index + 1;
+    updateCounter();
   }
 
   function next() { goTo(index + 1); }
   function prev() { goTo(index - 1); }
 
-  // Auto-slide every 6 seconds
   function startAuto() {
     stopAuto();
-    autoTimer = setInterval(next, 6000);
+    if (visibleSlides.length > 1) {
+      autoTimer = setInterval(next, 6000);
+    }
   }
 
   function stopAuto() {
     if (autoTimer) clearInterval(autoTimer);
   }
 
-  // Restart timer whenever user manually navigates
   function manual(fn) {
     return () => {
       fn();
@@ -83,13 +65,11 @@ if (carousel) {
   prevBtn.addEventListener('click', manual(prev));
   nextBtn.addEventListener('click', manual(next));
 
-  // Keyboard arrows
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft') { prev(); startAuto(); }
     if (e.key === 'ArrowRight') { next(); startAuto(); }
   });
 
-  // Touch swipe on mobile
   let touchStartX = 0;
   track.addEventListener('touchstart', e => {
     touchStartX = e.touches[0].clientX;
@@ -103,13 +83,47 @@ if (carousel) {
     }
   });
 
-  // Pause on hover (desktop) so users can read
   carousel.addEventListener('mouseenter', stopAuto);
   carousel.addEventListener('mouseleave', startAuto);
 
-  // Pause when tab is hidden
   document.addEventListener('visibilitychange', () => {
     document.hidden ? stopAuto() : startAuto();
+  });
+
+  // ============ FILTERS ============
+  function applyFilter(filter) {
+    track.style.transition = 'none';
+
+    allSlides.forEach(slide => {
+      const matches = filter === 'all' || slide.dataset.category === filter;
+      slide.style.display = matches ? '' : 'none';
+    });
+
+    visibleSlides = allSlides.filter(slide =>
+      filter === 'all' || slide.dataset.category === filter
+    );
+
+    index = 0;
+    track.style.transform = 'translateX(0)';
+    updateCounter();
+
+    const multi = visibleSlides.length > 1;
+    prevBtn.style.display = multi ? '' : 'none';
+    nextBtn.style.display = multi ? 'none' : '';
+    nextBtn.style.display = multi ? '' : 'none';
+
+    void track.offsetHeight;
+    track.style.transition = '';
+
+    startAuto();
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      applyFilter(btn.dataset.filter);
+    });
   });
 
   goTo(0);

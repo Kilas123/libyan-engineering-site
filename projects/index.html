@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +43,6 @@
 
     <section>
       <div class="container">
-
         <div class="filters" role="tablist">
           <button class="filters__btn is-active" data-filter="all">All</button>
           <button class="filters__btn" data-filter="hospitality">Hospitality</button>
@@ -56,166 +54,211 @@
           <button class="filters__btn" data-filter="urban-planning">Urban Planning</button>
           <button class="filters__btn" data-filter="mixed-use">Mixed-Use</button>
         </div>
+      </div>
+    </section>
 
-        <div class="project-grid">
+    <section class="carousel">
 
-          <article class="project-card" data-category="hospitality">
-            <div class="project-card__media">
-              <img src="../assets/projects/lathroon-resort.webp" alt="Lathroun Resort" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Hospitality</p>
-              <h3>Lathroun Resort</h3>
-              <p>Set in the picturesque coastal town of Lathroun, Libya, the resort is a sanctuary of tranquility and luxury, designed with a focus on seclusion and scenic beauty.</p>
+      <div class="carousel__viewport">
+        <div class="carousel__track">
+
+          <article class="carousel__slide" data-category="hospitality">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/lathroon-resort.webp" alt="Lathroun Resort" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">Hospitality</p>
+                <h2>Lathroun Resort</h2>
+                <p>Set in the picturesque coastal town of Lathroun, Libya, the Lathroun Resort is a sanctuary of tranquility and luxury, designed with a focus on seclusion and scenic beauty.</p>
+              </div>
             </div>
           </article>
 
-          <article class="project-card" data-category="hospitality">
-            <div class="project-card__media">
-              <img src="../assets/projects/ras-alhelal.webp" alt="Ras Al Hilal Resort" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Hospitality</p>
-              <h3>Ras Al Hilal Resort</h3>
-              <p>Perched on the eastern coastal line of the Green Mountain, the resort offers unmatched serenity and scenic beauty, with panoramic sea views and a secluded setting.</p>
-            </div>
-          </article>
-
-          <article class="project-card" data-category="mixed-use">
-            <div class="project-card__media">
-              <img src="../assets/projects/Endair-Towers%20(2).webp" alt="Endair Towers" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Mixed-Use</p>
-              <h3>Endair Towers</h3>
-              <p>Overlooking the Mediterranean Sea, this trio of towers comprises a luxurious hotel, a bustling mall, and a state-of-the-art office building.</p>
+          <article class="carousel__slide" data-category="hospitality">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/ras-alhelal.webp" alt="Ras Al Hilal Resort" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">2021 · Hospitality</p>
+                <h2>Ras Al Hilal Resort</h2>
+                <p>Perched on the eastern coastal line of the Green Mountain, Ras Al Hilal offers unmatched serenity and scenic beauty. Known for its panoramic sea views and secluded setting, this retreat epitomizes luxury in harmony with nature.</p>
+              </div>
             </div>
           </article>
 
-          <article class="project-card" data-category="commercial">
-            <div class="project-card__media">
-              <img src="../assets/projects/ahly-mall.webp" alt="Al Ahly Mall and Hotel" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Commercial</p>
-              <h3>Al Ahly Mall and Hotel</h3>
-              <p>Nestled in the vibrant city of Benghazi, the project covers 40,000 square meters, blending retail and hospitality in a single development.</p>
-            </div>
-          </article>
-
-          <article class="project-card" data-category="commercial">
-            <div class="project-card__media">
-              <img src="../assets/projects/bmw-building.webp" alt="BMW Building" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Commercial</p>
-              <h3>BMW Building</h3>
-              <p>A landmark project in the heart of Tripoli, with a striking circular blue exterior inspired by the BMW logo — a blend of luxury and function.</p>
+          <article class="carousel__slide" data-category="mixed-use">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/Endair-Towers%20(2).webp" alt="Endair Towers" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">Mixed-Use</p>
+                <h2>Endair Towers</h2>
+                <p>Overlooking the Mediterranean Sea, this trio of towers comprises a luxurious hotel, a bustling mall, and a state-of-the-art office building. The integration of three distinct functions within a single complex is the project's defining feature.</p>
+              </div>
             </div>
           </article>
 
-          <article class="project-card" data-category="residential">
-            <div class="project-card__media">
-              <img src="../assets/projects/tripoli-seafront.webp" alt="Tripoli Seafront Complex" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Residential</p>
-              <h3>Tripoli Seafront Complex</h3>
-              <p>Residential complex designed to maximize Mediterranean views and natural ventilation across all units, with unobstructed sea access from every apartment.</p>
-            </div>
-          </article>
-
-          <article class="project-card" data-category="urban-planning">
-            <div class="project-card__media">
-              <img src="../assets/projects/al-shaab-park.webp" alt="Al-Shaab Park" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Urban Planning</p>
-              <h3>Al-Shaab Park</h3>
-              <p>A verdant urban oasis sprawling across 40 hectares in the heart of Benghazi — the largest public park in the city and a central recreational hub.</p>
+          <article class="carousel__slide" data-category="commercial">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/ahly-mall.webp" alt="Al Ahly Mall and Hotel" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">Commercial</p>
+                <h2>Al Ahly Mall and Hotel</h2>
+                <p>Nestled in the vibrant city of Benghazi, the Al Ahly Mall and Hotel project stands as a beacon of modern tranquility. Covering an expansive area of 40,000 square meters.</p>
+              </div>
             </div>
           </article>
 
-          <article class="project-card" data-category="hospitality">
-            <div class="project-card__media">
-              <img src="../assets/projects/Tileel-touristic-resort.webp" alt="Tileel Touristic Resort" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Hospitality</p>
-              <h3>Tileel Touristic Resort</h3>
-              <p>A full-service seaside resort with private beach access — lodging, dining, sports, entertainment, and shopping all on one site.</p>
-            </div>
-          </article>
-
-          <article class="project-card" data-category="hospitality">
-            <div class="project-card__media">
-              <img src="../assets/projects/ozoo-hotel.webp" alt="Ouzo Hotel" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Hospitality</p>
-              <h3>Ouzo Hotel</h3>
-              <p>Situated in Benghazi, Libya, overlooking the 23rd of July Lake.</p>
+          <article class="carousel__slide" data-category="commercial">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/bmw-building.webp" alt="BMW Building" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">Commercial</p>
+                <h2>BMW Building</h2>
+                <p>Situated in the heart of Tripoli, the BMW Building is a landmark project masterfully representing the prestigious BMW brand — a perfect blend of luxury and functionality, with a striking circular blue exterior inspired by the BMW logo.</p>
+              </div>
             </div>
           </article>
 
-          <article class="project-card" data-category="healthcare">
-            <div class="project-card__media">
-              <img src="../assets/projects/benghazi-hospital.webp" alt="Benghazi Hospital" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Healthcare</p>
-              <h3>Benghazi Hospital</h3>
-              <p>A cornerstone of healthcare in Benghazi, designed with a focus on functionality and patient accessibility. Strategic layout simplifies internal circulation.</p>
-            </div>
-          </article>
-
-          <article class="project-card" data-category="healthcare">
-            <div class="project-card__media">
-              <img src="../assets/projects/sheryan-al-hayat-hospital.webp" alt="Sheryan Al Hayat Hospital" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Healthcare</p>
-              <h3>Sheryan Al Hayat Hospital</h3>
-              <p>A landmark in modern healthcare architecture, designed to meet the highest standards of medical care and patient comfort.</p>
+          <article class="carousel__slide" data-category="residential">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/tripoli-seafront.webp" alt="Tripoli Seafront Complex" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">Residential</p>
+                <h2>Tripoli Seafront Complex</h2>
+                <p>A residential complex designed to maximize views of the Mediterranean while ensuring natural ventilation across all units. Every apartment gains unobstructed access to the main views.</p>
+              </div>
             </div>
           </article>
 
-          <article class="project-card" data-category="aviation">
-            <div class="project-card__media">
-              <img src="../assets/projects/tripoli-airport.webp" alt="Tripoli International Airport" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Aviation</p>
-              <h3>Tripoli International Airport</h3>
-              <p>Redevelopment centred on functionality, safety, and enhanced passenger flow — modernising facilities to handle growing international and domestic traffic.</p>
-            </div>
-          </article>
-
-          <article class="project-card" data-category="civic">
-            <div class="project-card__media">
-              <img src="../assets/projects/Benghazi-conference-center.webp" alt="Benghazi Conference Center" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Civic</p>
-              <h3>Benghazi Conference Center</h3>
-              <p>Conceived in 2004, a pivotal architectural endeavour for the city — a departure from conventional norms and a symbol of Benghazi's aspirations.</p>
+          <article class="carousel__slide" data-category="urban-planning">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/al-shaab-park.webp" alt="Al-Shaab Park" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">2021 · Urban Planning</p>
+                <h2>Al-Shaab Park</h2>
+                <p>Strategically located in the heart of the city, Hadeqaat Al Shaab stands as a verdant urban oasis sprawling across 40 hectares — the largest public park in Benghazi, serving as a central recreational hub for the community.</p>
+              </div>
             </div>
           </article>
 
-          <article class="project-card" data-category="hospitality">
-            <div class="project-card__media">
-              <img src="../assets/projects/abuNawas.webp" alt="Abu Nawas Resort" loading="lazy">
+          <article class="carousel__slide" data-category="hospitality">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/Tileel-touristic-resort.webp" alt="Tileel Touristic Resort" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">Hospitality</p>
+                <h2>Tileel Touristic Resort</h2>
+                <p>Located on a stunning seaside, Tileel Resort offers an exclusive getaway with private beach access — a full-service destination with lodging, dining, sports, entertainment, and shopping all on-site.</p>
+              </div>
             </div>
-            <div class="project-card__body">
-              <p class="project-card__label">Hospitality</p>
-              <h3>Abu Nawas Resort</h3>
-              <p>A resort spanning over 55,000 square meters with 44,166 square meters of direct Mediterranean frontage — urban vibrancy meets tranquil beachfront leisure.</p>
+          </article>
+
+          <article class="carousel__slide" data-category="hospitality">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/ozoo-hotel.webp" alt="Ouzo Hotel" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">Hospitality</p>
+                <h2>Ouzo Hotel</h2>
+                <p>The Ouzo Hotel is situated in the picturesque location of Benghazi, Libya, overlooking the 23rd of July Lake.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel__slide" data-category="healthcare">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/benghazi-hospital.webp" alt="Benghazi Hospital" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">Healthcare</p>
+                <h2>Benghazi Hospital</h2>
+                <p>Benghazi Hospital is a cornerstone of healthcare in Benghazi, designed with a focus on functionality and patient accessibility. The facility is recognized for its strategic design, which simplifies internal circulation and enhances the efficiency of medical services.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel__slide" data-category="healthcare">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/sheryan-al-hayat-hospital.webp" alt="Sheryan Al Hayat Hospital" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">Healthcare</p>
+                <h2>Sheryan Al Hayat Hospital</h2>
+                <p>Sheryan Al Hayat Hospital represents a landmark in modern healthcare architecture, meticulously designed to meet the highest standards of medical care and patient comfort.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel__slide" data-category="aviation">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/tripoli-airport.webp" alt="Tripoli International Airport" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">Aviation</p>
+                <h2>Tripoli International Airport</h2>
+                <p>Our approach to the redevelopment of Tripoli Airport centred on functionality, safety, and enhanced passenger flow — modernising facilities to handle the increasing volume of international and domestic flights.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel__slide" data-category="civic">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/Benghazi-conference-center.webp" alt="Benghazi Conference Center" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">2004 · Civic</p>
+                <h2>Benghazi Conference Center</h2>
+                <p>Conceived in 2004, the Benghazi Conference Center represents a pivotal architectural endeavour for the city, embodying innovation and vision — a departure from conventional design norms.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel__slide" data-category="hospitality">
+            <div class="project__inner">
+              <div class="project__media">
+                <img src="../assets/projects/abuNawas.webp" alt="Abu Nawas Resort" loading="lazy">
+              </div>
+              <div class="project__body">
+                <p class="project__label">Hospitality</p>
+                <h2>Abu Nawas Resort</h2>
+                <p>Positioned in the bustling Gergaresh area of Tripoli, spanning over 55,000 square meters with 44,166 square meters of direct Mediterranean frontage — urban vibrancy meets tranquil beachfront leisure.</p>
+              </div>
             </div>
           </article>
 
         </div>
-
       </div>
+
+      <button class="carousel__btn carousel__btn--prev" aria-label="Previous project">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+
+      <button class="carousel__btn carousel__btn--next" aria-label="Next project">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
+      <div class="carousel__counter">
+        <span data-current>1</span> / <span data-total>14</span>
+      </div>
+
     </section>
 
   </main>

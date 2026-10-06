@@ -215,20 +215,6 @@ section { padding: var(--space-xxl) 0; }
   gap: var(--space-s);
 }
 
-@media (max-width: 720px) {
-  .hero {
-    min-height: 115vh;
-  }
-
-  .hero__slide {
-    /* Zoom the architectural photo on narrow phones so it fills the card */
-    background-size: auto 100%;
-    background-position: center center;
-  }
-}
-  
-
-
 /* ============ CARDS ============ */
 .card-grid {
   display: grid;
