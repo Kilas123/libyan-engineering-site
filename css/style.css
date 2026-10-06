@@ -811,7 +811,7 @@ section { padding: var(--space-xxl) 0; }
 
 @media (max-width: 720px) {
   .hero {
-    min-height: 60vh;
+    min-height: 70vh;
     padding: var(--space-l) 0;
   }
   .hero__slide {
