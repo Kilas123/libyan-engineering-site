@@ -922,3 +922,17 @@ section { padding: var(--space-xxl) 0; }
     flex-shrink: 0;
   }
 }
+/* Tighten spacing around the filter bar */
+.filters {
+  margin: var(--space-m) 0 0;
+}
+
+/* Reduce padding on the section wrapping the filters */
+main > section:has(.filters) {
+  padding-bottom: 0;
+}
+
+/* Tighter carousel top padding */
+.carousel {
+  padding-top: var(--space-m);
+}
