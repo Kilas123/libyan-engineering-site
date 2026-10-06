@@ -940,3 +940,11 @@ main > section:has(.filters) {
 main > section:first-child {
   padding-bottom: var(--space-s);
 }
+@media (max-width: 720px) {
+  .page-header {
+    padding: var(--space-m) 0 var(--space-xs);
+  }
+  .page-filters {
+    padding: 0 0 var(--space-s);
+  }
+}
