@@ -936,3 +936,7 @@ main > section:has(.filters) {
 .carousel {
   padding-top: var(--space-m);
 }
+/* Tighten space under the Projects page title */
+main > section:first-child {
+  padding-bottom: var(--space-s);
+}
