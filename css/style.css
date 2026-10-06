@@ -644,7 +644,7 @@ section { padding: var(--space-xxl) 0; }
 }
 /* ============ PROJECT ============ */
 .project {
-  padding: var(--space-xxl) 0;
+  padding: var(--space-l) 0;
 }
 
 .project__inner {
