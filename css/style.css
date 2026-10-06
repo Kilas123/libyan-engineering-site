@@ -823,3 +823,116 @@ section { padding: var(--space-xxl) 0; }
     background-position: center;
   }
 }
+/* ============ FILTER BUTTONS ============ */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: var(--space-l) 0;
+  padding-bottom: var(--space-m);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.filters__btn {
+  padding: .5rem 1rem;
+  font-size: .875rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+
+.filters__btn:hover {
+  border-color: var(--color-text);
+}
+
+.filters__btn.is-active {
+  background: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+  border-color: var(--color-bg-dark);
+}
+
+/* ============ PROJECT GRID (filterable) ============ */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: var(--space-l);
+  margin-top: var(--space-l);
+}
+
+.project-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .15s, transform .15s;
+}
+
+.project-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.project-card__media {
+  aspect-ratio: 4 / 3;
+  background: var(--color-bg-soft);
+  overflow: hidden;
+}
+
+.project-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card__body {
+  padding: var(--space-m);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-card__label {
+  font-size: .8rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 .35rem;
+}
+
+.project-card__body h3 {
+  margin-bottom: var(--space-xs);
+}
+
+.project-card__body p:last-child {
+  color: var(--color-text-muted);
+  font-size: .95rem;
+  margin: 0;
+}
+
+/* Hidden state when filtered out */
+.project-card.is-hidden {
+  display: none;
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: var(--space-s);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .filters::-webkit-scrollbar { display: none; }
+  .filters__btn {
+    flex-shrink: 0;
+  }
+}

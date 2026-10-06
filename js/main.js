@@ -12,6 +12,30 @@ if (toggle && nav) {
     link.addEventListener('click', () => nav.classList.remove('is-open'));
   });
 }
+// ============ PROJECT FILTERS ============
+const filterBtns = document.querySelectorAll('.filters__btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+if (filterBtns.length && projectCards.length) {
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      // Update active state
+      filterBtns.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      // Show/hide cards
+      projectCards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('is-hidden');
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+    });
+  });
+}
 
 // ============ PROJECT CAROUSEL ============
 const carousel = document.querySelector('.carousel');
