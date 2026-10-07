@@ -969,3 +969,11 @@ main > section:first-child {
 .btn--dark:hover {
   opacity: .85;
 }
+.office address a {
+  transition: color .15s;
+}
+
+.office address a:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
