@@ -961,6 +961,9 @@ main > section:first-child {
 .btn--dark {
   background: var(--color-bg-dark);
   color: var(--color-text-inverse);
+  padding: 1rem 2.5rem;
+  font-size: 1.0625rem;
+  font-weight: 700;
 }
 
 .btn--dark:hover {
