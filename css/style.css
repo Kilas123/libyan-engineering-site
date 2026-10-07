@@ -649,9 +649,10 @@ section { padding: var(--space-xxl) 0; }
 .project__media img {
   width: 100%;
   height: auto;
+  min-height: 380px;
+  object-fit: cover;
   display: block;
 }
-
 .project__label {
   font-size: .8rem;
   letter-spacing: .08em;
