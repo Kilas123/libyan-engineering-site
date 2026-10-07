@@ -635,7 +635,7 @@ section { padding: var(--space-xxl) 0; }
 
 .project__inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   gap: var(--space-xl);
   align-items: center;
 }
