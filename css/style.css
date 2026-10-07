@@ -958,3 +958,11 @@ main > section:first-child {
     background-position: center 30%;
   }
 }
+.btn--dark {
+  background: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+}
+
+.btn--dark:hover {
+  opacity: .85;
+}
