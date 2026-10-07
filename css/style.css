@@ -949,3 +949,12 @@ main > section:first-child {
     padding: 0 0 var(--space-s);
   }
 }
+@media (max-width: 720px) {
+  .hero {
+    min-height: 60vh;
+  }
+  .hero__slide {
+    background-size: cover;
+    background-position: center 30%;
+  }
+}
