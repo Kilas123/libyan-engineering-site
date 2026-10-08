@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kilas123.github.io/libyan-engineering-site/sitemap.xml
