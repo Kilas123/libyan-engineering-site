@@ -977,3 +977,13 @@ main > section:first-child {
   color: var(--color-text);
   text-decoration: underline;
 }
+.office__btn {
+  padding: .5rem 1rem;
+  font-size: .875rem;
+  background: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+}
+
+.office__btn:hover {
+  opacity: .85;
+}
