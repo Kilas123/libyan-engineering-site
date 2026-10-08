@@ -125,3 +125,61 @@ if (carousel) {
   goTo(0);
   startAuto();
 }
+/* =========================
+   Statistics Counter
+   ========================= */
+
+const statNumbers = document.querySelectorAll('.stat__number span');
+
+if (statNumbers.length) {
+  let hasAnimated = false;
+
+  const animateStats = () => {
+    if (hasAnimated) return;
+    hasAnimated = true;
+
+    statNumbers.forEach(number => {
+      const target = Number(number.dataset.target);
+      const duration = 2000;
+      const startTime = performance.now();
+
+      const updateNumber = currentTime => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Smooth ease-out animation
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+        const currentNumber = Math.floor(easedProgress * target);
+
+        number.textContent = currentNumber;
+
+        if (progress < 1) {
+          requestAnimationFrame(updateNumber);
+        } else {
+          number.textContent = target;
+        }
+      };
+
+      requestAnimationFrame(updateNumber);
+    });
+  };
+
+  const statsSection = document.querySelector('.stats');
+
+  if (statsSection) {
+    const statsObserver = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          animateStats();
+          statsObserver.disconnect();
+        }
+      },
+      {
+        threshold: 0.4
+      }
+    );
+
+    statsObserver.observe(statsSection);
+  }
+}
