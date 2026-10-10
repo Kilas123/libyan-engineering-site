@@ -67,18 +67,107 @@ if (carousel) {
     if (e.key === 'ArrowRight') { next(); startAuto(); }
   });
 
-  let touchStartX = 0;
-  track.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-  }, { passive: true });
+    // ============ TOUCH SWIPE + MOUSE DRAG ============
+  let startX = 0;
+  let dragOffset = 0;
+  let isPointerDown = false;
+  let hasDragged = false;
+  let activePointerId = null;
 
-  track.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      diff > 0 ? next() : prev();
-      startAuto();
+  const swipeThreshold = 50;
+  const dragThreshold = 6;
+
+  // Allow vertical page scrolling while handling horizontal swipes.
+  track.style.touchAction = 'pan-y';
+
+  track.addEventListener('pointerdown', e => {
+    // Only use the primary mouse button, but allow touch and pen.
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+
+    isPointerDown = true;
+    hasDragged = false;
+    activePointerId = e.pointerId;
+    startX = e.clientX;
+    dragOffset = 0;
+
+    stopAuto();
+  });
+
+  track.addEventListener('pointermove', e => {
+    if (!isPointerDown || e.pointerId !== activePointerId) return;
+
+    dragOffset = e.clientX - startX;
+
+    if (Math.abs(dragOffset) > dragThreshold) {
+      hasDragged = true;
+
+      // Disable animation while the project follows your finger/mouse.
+      track.style.transition = 'none';
+      track.style.transform =
+        `translateX(calc(-${index * 100}% + ${dragOffset}px))`;
     }
   });
+
+  function finishDrag(e, cancelled = false) {
+    if (!isPointerDown || e.pointerId !== activePointerId) return;
+
+    isPointerDown = false;
+
+    if (track.hasPointerCapture(e.pointerId)) {
+      track.releasePointerCapture(e.pointerId);
+    }
+
+    activePointerId = null;
+
+    // Restore the normal smooth slide transition.
+    track.style.transition = '';
+
+    if (!cancelled && hasDragged && Math.abs(dragOffset) >= swipeThreshold) {
+      if (dragOffset < 0) {
+        next(); // Drag left: next project
+      } else {
+        prev(); // Drag right: previous project
+      }
+    } else {
+      // Not enough movement: return to the current project.
+      goTo(index);
+    }
+
+    // Prevent a drag from accidentally clicking a project link.
+    if (hasDragged) {
+      track.dataset.dragged = 'true';
+      setTimeout(() => {
+        delete track.dataset.dragged;
+      }, 0);
+    }
+
+    hasDragged = false;
+    dragOffset = 0;
+    startAuto();
+  }
+
+  track.addEventListener('pointerup', e => {
+    finishDrag(e);
+  });
+
+  track.addEventListener('pointercancel', e => {
+    finishDrag(e, true);
+  });
+
+  track.addEventListener('lostpointercapture', e => {
+    if (isPointerDown && e.pointerId === activePointerId) {
+      finishDrag(e, true);
+    }
+  });
+
+  // Avoid following a drag with an accidental link click.
+  track.addEventListener('click', e => {
+    if (track.dataset.dragged === 'true') {
+      e.preventDefault();
+      e.stopPropagation();
+      delete track.dataset.dragged;
+    }
+  }, true);
 
   carousel.addEventListener('mouseenter', stopAuto);
   carousel.addEventListener('mouseleave', startAuto);
