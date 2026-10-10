@@ -1043,3 +1043,24 @@ main > section:first-child {
 .carousel__track {
   touch-action: pan-y;
 }
+/* ============ ARABIC ============ */
+[lang="ar"] {
+  font-family: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+  line-height: 1.8;
+}
+
+[lang="ar"] .brand__name {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  letter-spacing: 0;
+}
+
+.lang-switch {
+  padding-inline-start: var(--space-s);
+  border-inline-start: 1px solid rgba(255,255,255,.25);
+  font-weight: 600;
+}
+
+[dir="rtl"] .site-nav a,
+[dir="rtl"] .site-footer a {
+  letter-spacing: 0;
+}
