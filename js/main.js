@@ -81,17 +81,20 @@ if (carousel) {
   track.style.touchAction = 'pan-y';
 
   track.addEventListener('pointerdown', e => {
-    // Only use the primary mouse button, but allow touch and pen.
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
+  if (e.pointerType === 'mouse' && e.button !== 0) return;
 
-    isPointerDown = true;
-    hasDragged = false;
-    activePointerId = e.pointerId;
-    startX = e.clientX;
-    dragOffset = 0;
+  isPointerDown = true;
+  hasDragged = false;
+  activePointerId = e.pointerId;
+  startX = e.clientX;
+  dragOffset = 0;
 
-    stopAuto();
-  });
+  // NEW: capture the pointer so we keep receiving move events
+  // even if the finger moves outside the carousel area
+  track.setPointerCapture(e.pointerId);
+
+  stopAuto();
+});
 
   track.addEventListener('pointermove', e => {
     if (!isPointerDown || e.pointerId !== activePointerId) return;

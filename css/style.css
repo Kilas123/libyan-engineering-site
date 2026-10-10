@@ -1040,3 +1040,6 @@ main > section:first-child {
     font-size: 0.8rem;
   }
 }
+.carousel__track {
+  touch-action: pan-y;
+}
