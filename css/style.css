@@ -1064,3 +1064,11 @@ main > section:first-child {
 [dir="rtl"] .site-footer a {
   letter-spacing: 0;
 }
+/* Carousel must stay LTR so slide transforms work correctly */
+[dir="rtl"] .carousel__track {
+  direction: ltr;
+}
+
+[dir="rtl"] .carousel__slide {
+  direction: rtl;
+}
