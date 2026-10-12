@@ -75,7 +75,7 @@ if (carousel) {
   let activePointerId = null;
 
   const swipeThreshold = 50;
-  const dragThreshold = 6;
+  const dragThreshold = 20;
 
   // Allow vertical page scrolling while handling horizontal swipes.
   track.style.touchAction = 'pan-y';
@@ -136,13 +136,7 @@ if (carousel) {
       goTo(index);
     }
 
-    // Prevent a drag from accidentally clicking a project link.
-    if (hasDragged) {
-      track.dataset.dragged = 'true';
-      setTimeout(() => {
-        delete track.dataset.dragged;
-      }, 0);
-    }
+   
 
     hasDragged = false;
     dragOffset = 0;
@@ -163,14 +157,7 @@ if (carousel) {
     }
   });
 
-  // Avoid following a drag with an accidental link click.
-  track.addEventListener('click', e => {
-    if (track.dataset.dragged === 'true') {
-      e.preventDefault();
-      e.stopPropagation();
-      delete track.dataset.dragged;
-    }
-  }, true);
+
 
   carousel.addEventListener('mouseenter', stopAuto);
   carousel.addEventListener('mouseleave', startAuto);
