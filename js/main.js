@@ -80,7 +80,7 @@ if (carousel) {
   // Allow vertical page scrolling while handling horizontal swipes.
   track.style.touchAction = 'pan-y';
 
-  track.addEventListener('pointerdown', e => {
+track.addEventListener('pointerdown', e => {
   if (e.pointerType === 'mouse' && e.button !== 0) return;
 
   isPointerDown = true;
@@ -89,27 +89,27 @@ if (carousel) {
   startX = e.clientX;
   dragOffset = 0;
 
-  // NEW: capture the pointer so we keep receiving move events
-  // even if the finger moves outside the carousel area
-  track.setPointerCapture(e.pointerId);
-
+  // Don't capture yet — only after a real drag is detected
   stopAuto();
 });
+track.addEventListener('pointermove', e => {
+  if (!isPointerDown || e.pointerId !== activePointerId) return;
 
-  track.addEventListener('pointermove', e => {
-    if (!isPointerDown || e.pointerId !== activePointerId) return;
+  dragOffset = e.clientX - startX;
 
-    dragOffset = e.clientX - startX;
-
-    if (Math.abs(dragOffset) > dragThreshold) {
-      hasDragged = true;
-
-      // Disable animation while the project follows your finger/mouse.
-      track.style.transition = 'none';
-      track.style.transform =
-        `translateX(calc(-${index * 100}% + ${dragOffset}px))`;
+  if (Math.abs(dragOffset) > dragThreshold) {
+    if (!hasDragged) {
+      // Now we know it's a drag — capture the pointer
+      track.setPointerCapture(e.pointerId);
     }
-  });
+    hasDragged = true;
+
+    // Disable animation while the project follows your finger/mouse.
+    track.style.transition = 'none';
+    track.style.transform =
+      `translateX(calc(-${index * 100}% + ${dragOffset}px))`;
+  }
+});
 
   function finishDrag(e, cancelled = false) {
     if (!isPointerDown || e.pointerId !== activePointerId) return;
