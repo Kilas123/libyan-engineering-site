@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — LEO</title>
+  <meta name="description" content="The page you are looking for does not exist.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://kilas123.github.io/libyan-engineering-site/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+
+  <style>
+    .error-section {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      padding: var(--space-xl) 0;
+    }
+    .error-content {
+      max-width: 42rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .error-code {
+      font-size: clamp(5rem, 14vw, 10rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.04em;
+      margin: 0 0 var(--space-m);
+      opacity: .15;
+    }
+    .error-content h1 {
+      margin-bottom: var(--space-s);
+    }
+    .error-content p {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-l);
+    }
+    .error-content .btn {
+      margin: 0 .25rem;
+    }
+    .error-divider {
+      border: 0;
+      border-top: 1px solid var(--color-border);
+      margin: var(--space-xl) auto;
+      max-width: 8rem;
+    }
+    .error-arabic {
+      direction: rtl;
+      font-family: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+      line-height: 1.8;
+    }
+    .error-arabic p {
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="./" class="brand">
+        <img decoding="async" src="assets/logo.webp" alt="" width="48" height="48" class="brand__mark">
+        <span class="brand__name">LEO</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="./">Home</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./services/">Services</a></li>
+          <li><a href="./projects/">Projects</a></li>
+          <li><a href="./assets/leo_compressed.pdf" download>Profile</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+          <li><a href="./ar/" class="lang-switch">العربية</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="error-section">
+      <div class="container">
+        <div class="error-content">
+
+          <p class="error-code" aria-hidden="true">404</p>
+
+          <h1>Page not found</h1>
+          <p>The page you're looking for doesn't exist or has been moved.</p>
+          <p>
+            <a href="./" class="btn btn--dark">Back to homepage</a>
+            <a href="./projects/" class="btn" style="background: transparent; color: var(--color-text); border: 1px solid var(--color-border);">View projects</a>
+          </p>
+
+          <hr class="error-divider">
+
+          <div class="error-arabic" lang="ar" dir="rtl">
+            <h1>الصفحة غير موجودة</h1>
+            <p>الصفحة التي تبحث عنها غير موجودة أو تم نقلها.</p>
+            <p>
+              <a href="./ar/" class="btn btn--dark">العودة إلى الرئيسية</a>
+              <a href="./ar/projects/" class="btn" style="background: transparent; color: var(--color-text); border: 1px solid var(--color-border);">عرض المشاريع</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; 2026 LEO. All rights reserved. · جميع الحقوق محفوظة.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
