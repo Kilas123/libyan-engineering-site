@@ -1072,3 +1072,171 @@ main > section:first-child {
 [dir="rtl"] .carousel__slide {
   direction: rtl;
 }
+/* ============ FOCUS STATES ============ */
+a:focus-visible,
+button:focus-visible,
+.filters__btn:focus-visible,
+.carousel__btn:focus-visible,
+.nav-toggle:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ============ BACK TO TOP ============ */
+.back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+  border: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 40;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity .2s, visibility .2s, transform .2s, background .15s;
+  box-shadow: 0 4px 16px rgba(0,0,0,.15);
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover { opacity: .85; }
+[dir="rtl"] .back-to-top {
+  right: auto;
+  left: 1.5rem;
+}
+
+/* ============ TOAST ============ */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+  padding: .75rem 1.25rem;
+  border-radius: 999px;
+  font-size: .875rem;
+  font-weight: 600;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s, visibility .2s, transform .2s;
+  max-width: calc(100vw - 2rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.toast.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============ FILTER COUNT ============ */
+.filters__count {
+  font-weight: 400;
+  opacity: .55;
+  margin-inline-start: .15em;
+  font-size: .85em;
+}
+.filters__btn.is-active .filters__count {
+  opacity: .7;
+}
+
+/* ============ PHONE LINK ============ */
+a[href^="tel:"] {
+  cursor: copy;
+}
+
+/* ============ PRINT STYLESHEET ============ */
+@media print {
+  .site-header,
+  .site-footer,
+  .filters,
+  .carousel__btn,
+  .carousel__counter,
+  .back-to-top,
+  .toast,
+  .btn,
+  .social,
+  .nav-toggle {
+    display: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.4;
+    color: #000;
+    background: #fff;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  section {
+    padding: 1rem 0;
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+    color: #000;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: .85em;
+    color: #666;
+  }
+
+  a[href^="#"]:after,
+  a[href^="tel:"]:after,
+  a[href^="mailto:"]:after {
+    content: "";
+  }
+
+  .hero {
+    background: #fff !important;
+    color: #000 !important;
+    min-height: auto;
+    padding: 1rem 0;
+  }
+
+  .hero__bg {
+    display: none;
+  }
+
+  .carousel__slide {
+    page-break-inside: avoid;
+    padding: 0;
+  }
+
+  .project__inner {
+    display: block;
+  }
+
+  .project__media {
+    max-width: 400px;
+    margin-bottom: .5rem;
+  }
+
+  img {
+    max-width: 100%;
+    page-break-inside: avoid;
+  }
+}

@@ -262,3 +262,123 @@ if (statNumbers.length) {
     statsObserver.observe(statsSection);
   }
 }
+/* ============ TIER 2 IMPROVEMENTS ============ */
+
+const IS_ARABIC = document.documentElement.lang === 'ar';
+
+// --- Back to top button ---
+const backToTop = document.createElement('button');
+backToTop.className = 'back-to-top';
+backToTop.setAttribute('aria-label', IS_ARABIC ? 'العودة إلى الأعلى' : 'Back to top');
+backToTop.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>';
+document.body.appendChild(backToTop);
+
+let scrollTicking = false;
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    window.requestAnimationFrame(() => {
+      backToTop.classList.toggle('is-visible', window.scrollY > 400);
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+}, { passive: true });
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// --- Copy phone to clipboard with toast ---
+const toast = document.createElement('div');
+toast.className = 'toast';
+document.body.appendChild(toast);
+let toastTimer;
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('is-visible');
+  }, 2000);
+}
+
+const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+document.addEventListener('click', (e) => {
+  const telLink = e.target.closest('a[href^="tel:"]');
+  if (!telLink) return;
+
+  const phone = telLink.textContent.trim();
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(phone).then(() => {
+      showToast(IS_ARABIC ? `تم النسخ: ${phone}` : `Copied: ${phone}`);
+    }).catch(() => {});
+  }
+
+  // On desktop, prevent the useless "open app" prompt — we already copied
+  if (!isMobileDevice) {
+    e.preventDefault();
+  }
+});
+
+// --- Category counts on filter buttons ---
+const allCategoryEls = document.querySelectorAll('[data-category]');
+if (allCategoryEls.length) {
+  const categoryCounts = {};
+  allCategoryEls.forEach(el => {
+    const cat = el.dataset.category;
+    categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+  });
+
+  document.querySelectorAll('.filters__btn').forEach(btn => {
+    const filter = btn.dataset.filter;
+    let count;
+    if (filter === 'all') {
+      count = allCategoryEls.length;
+    } else {
+      count = categoryCounts[filter] || 0;
+    }
+    if (count > 0) {
+      const span = document.createElement('span');
+      span.className = 'filters__count';
+      span.textContent = `(${count})`;
+      btn.appendChild(document.createTextNode(' '));
+      btn.appendChild(span);
+    }
+  });
+}
+
+// --- Language preference memory ---
+const LANG_KEY = 'leo_lang_pref';
+
+document.querySelectorAll('.lang-switch').forEach(link => {
+  link.addEventListener('click', () => {
+    const href = link.getAttribute('href') || '';
+    const goingToArabic = /(^|\/)ar(\/|$)/.test(href) || link.getAttribute('lang') === 'ar';
+    try {
+      localStorage.setItem(LANG_KEY, goingToArabic ? 'ar' : 'en');
+    } catch (err) {}
+  });
+});
+
+// Auto-redirect only on root homepages
+try {
+  const pref = localStorage.getItem(LANG_KEY);
+  if (pref) {
+    const path = window.location.pathname;
+    const isEnRoot = /\/(index\.html)?$/.test(path) &&
+                     !/\/ar\//.test(path) &&
+                     !/\/(projects|services)\//.test(path);
+    const isArRoot = /\/ar\/(index\.html)?$/.test(path);
+
+    if (pref === 'ar' && isEnRoot) {
+      const arLink = document.querySelector('link[hreflang="ar"]');
+      if (arLink) window.location.replace(arLink.getAttribute('href'));
+    } else if (pref === 'en' && isArRoot) {
+      const enLink = document.querySelector('link[hreflang="en"]');
+      if (enLink) window.location.replace(enLink.getAttribute('href'));
+    }
+  }
+} catch (err) {}
