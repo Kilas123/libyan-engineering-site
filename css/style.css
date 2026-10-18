@@ -1333,3 +1333,22 @@ a[href^="tel:"] {
   right: auto;
   left: 1.5rem;
 }
+@media (max-width: 720px) {
+  .stats {
+    padding: var(--space-xl) 0;
+  }
+  .stats__container {
+    flex-direction: column;
+    gap: var(--space-l);
+    padding: 0 var(--space-l);
+  }
+  .stat__number {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+  .stat__label {
+    font-size: .85rem;
+    letter-spacing: .05em;
+    padding: 0 var(--space-s);
+    line-height: 1.4;
+  }
+}
