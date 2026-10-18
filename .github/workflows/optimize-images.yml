@@ -1,0 +1,111 @@
+name: Optimize website images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/**'
+      - '*.html'
+      - '**/*.html'
+      - '**/*.css'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Pillow
+        run: python -m pip install --upgrade pillow
+
+      - name: Convert images to WebP
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          root = Path("assets")
+          extensions = {".png", ".jpg", ".jpeg"}
+          converted = 0
+
+          for src in root.rglob("*"):
+              if src.suffix.lower() not in extensions:
+                  continue
+
+              try:
+                  with Image.open(src) as im:
+                      # Keep the site fast without making architectural renders visibly soft.
+                      max_width = 2000
+                      if im.width > max_width:
+                          height = round(im.height * max_width / im.width)
+                          im = im.resize((max_width, height), Image.Resampling.LANCZOS)
+
+                      if im.mode not in ("RGB", "RGBA"):
+                          im = im.convert("RGBA" if "A" in im.getbands() else "RGB")
+
+                      dst = src.with_suffix(".webp")
+                      im.save(dst, "WEBP", quality=84, method=6)
+                      converted += 1
+              except Exception as exc:
+                  print(f"Skipping {src}: {exc}")
+
+          print(f"Converted {converted} images.")
+
+          # Update every HTML/CSS reference to the new WebP files.
+          for file in list(Path(".").rglob("*.html")) + list(Path(".").rglob("*.css")):
+              if ".git" in file.parts:
+                  continue
+              text = file.read_text(encoding="utf-8")
+              original = text
+              for src in root.rglob("*"):
+                  if src.suffix.lower() not in extensions:
+                      continue
+                  rel = src.as_posix()
+                  webp = src.with_suffix(".webp").as_posix()
+                  text = text.replace(rel, webp)
+                  text = text.replace(src.name, src.with_suffix(".webp").name)
+              if text != original:
+                  file.write_text(text, encoding="utf-8")
+
+          # Lazy-load non-hero images. The first hero remains high priority.
+          for file in Path(".").rglob("*.html"):
+              if ".git" in file.parts:
+                  continue
+              text = file.read_text(encoding="utf-8")
+              import re
+              def patch_img(match):
+                  tag = match.group(0)
+                  if "loading=" in tag:
+                      return tag
+                  if "hero-" in tag:
+                      return tag.replace("<img", '<img fetchpriority="high" decoding="async"', 1)
+                  return tag.replace("<img", '<img loading="lazy" decoding="async"', 1)
+              text = re.sub(r"<img\b[^>]*>", patch_img, text, flags=re.I)
+              file.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Remove original large raster images
+        run: |
+          find assets -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -delete
+
+      - name: Commit optimized images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets '*.html' '**/*.html' '*.css' '**/*.css' 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No optimization changes to commit."
+          else
+            git commit -m "Optimize website images for faster loading"
+            git push
+          fi
