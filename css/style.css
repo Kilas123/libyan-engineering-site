@@ -1352,3 +1352,115 @@ a[href^="tel:"] {
     line-height: 1.4;
   }
 }
+/* ============ EXPO FEATURE ============ */
+.expo-feature {
+  padding: var(--space-xxl) 0;
+}
+
+.expo-feature__header {
+  max-width: 44rem;
+  margin-bottom: var(--space-l);
+}
+
+.expo-feature__label {
+  font-size: .8rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 .5rem;
+}
+
+.expo-feature__lede {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+}
+
+.expo-feature__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-m);
+}
+
+.expo-feature__photo {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-bg-soft);
+}
+
+.expo-feature__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============ HIGHLIGHT CARDS (The 3 smaller projects) ============ */
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--space-l);
+}
+
+.highlight-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-bg);
+  transition: box-shadow .15s, transform .15s;
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.highlight-card__media {
+  aspect-ratio: 4 / 3;
+  background: var(--color-bg-soft);
+  overflow: hidden;
+}
+
+.highlight-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.highlight-card__body {
+  padding: var(--space-m);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-card__label {
+  font-size: .8rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 .35rem;
+}
+
+.highlight-card__body h3 {
+  margin-bottom: var(--space-xs);
+}
+
+.highlight-card__body p:last-child {
+  color: var(--color-text-muted);
+  font-size: .95rem;
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .expo-feature__gallery {
+    grid-template-columns: 1fr;
+    gap: var(--space-s);
+  }
+  .expo-feature__photo {
+    aspect-ratio: 4 / 3;
+  }
+}
