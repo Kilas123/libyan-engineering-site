@@ -183,7 +183,7 @@
 
         <div class="stat">
           <div class="stat__number">
-            <span data-target="80">0</span>+
+            <span data-target="1000">1000</span>+
           </div>
           <div class="stat__label">مشروعاً</div>
         </div>
@@ -194,76 +194,79 @@
     <!-- Featured projects -->
     <section>
       <div class="container">
-        <h2>مشاريع مختارة</h2>
-        <p>بعض من أفضل مشاريعنا. <a href="projects/"><strong>عرض الكل ←</strong></a></p>
+        <section class="expo-feature">
+  <div class="container">
+    <h2>مشاريع مختارة</h2>
+    <p style="color: var(--color-text-muted); margin-bottom: var(--space-l);">بعض من أبرز أعمالنا.</p>
+
+  <section class="expo-feature">
+  <div class="container">
+    <h2>مشاريع مختارة</h2>
+    <p style="color: var(--color-text-muted); margin-bottom: var(--space-l);">بعض من أبرز أعمالنا.</p>
+
+    <!-- The Featured Expo Project -->
+    <div class="expo-feature__header">
+      <p class="expo-feature__label">15–18 يونيو 2024 · مدني</p>
+      <h3 style="font-size: clamp(1.5rem, 3vw, 2.25rem);">معرض 2024 الإقليمي</h3>
+      <p class="expo-feature__lede">أكبر معرض للبناء في المنطقة. من التخطيط العمراني والبنية التحتية إلى المؤسسات التعليمية والصحية، رحلتنا هي رحلة نمو وتميز وأثر دائم. نقف اليوم كمنارة للخبرة الهندسية، ليس في ليبيا فحسب بل على الساحة العالمية، حيث نقدم مجموعة واسعة من الخدمات في الهندسة المعمارية والمدنية والإنشائية، بالإضافة إلى المساحة وإدارة المشاريع.</p>
+    </div>
+
+    <div class="expo-feature__gallery">
+      <div class="expo-feature__photo">
+        <img src="../assets/projects/2024-expo-01.webp" alt="معرض 2024 الإقليمي — صورة 1" loading="lazy">
       </div>
-    </section>
-
-    <section class="project">
-      <div class="container project__inner">
-
-        <div class="project__media">
-          <img src="../assets/projects/lathroon-resort.webp"
-     loading="eager"
-     decoding="sync"
-     alt="...">
-        </div>
-
-        <div class="project__body">
-          <p class="project__label">الضيافة</p>
-          <h2>منتجع لاثرون</h2>
-          <p>
-            يقع منتجع لاثرون في البلدة الساحلية الخلابة لاثرون في ليبيا، وهو ملاذ من الهدوء والرفاهية، صُمم مع التركيز على العزلة والجمال الطبيعي.
-          </p>
-        </div>
-
+      <div class="expo-feature__photo">
+        <img src="../assets/projects/2024-expo-02.webp" alt="معرض 2024 الإقليمي — صورة 2" loading="lazy">
       </div>
-    </section>
-
-    <section class="project">
-      <div class="container project__inner">
-
-        <div class="project__media">
-          <img
-            src="../assets/projects/Endair-Towers%20(2).webp"
-            alt="أبراج إندير على ساحل البحر الأبيض المتوسط"
-            loading="lazy"
-            decoding="async">
-        </div>
-
-        <div class="project__body">
-          <p class="project__label">متعدد الاستخدامات</p>
-          <h2>أبراج إندير</h2>
-          <p>
-            تُطل أبراج إندير على البحر الأبيض المتوسط، وتضم ثلاثة أبراج تشمل فندقاً فاخراً، ومركزاً تجارياً نابضاً بالحياة، ومبنى مكاتب حديثاً.
-          </p>
-        </div>
-
+      <div class="expo-feature__photo">
+        <img src="../assets/projects/2024-expo-03.webp" alt="معرض 2024 الإقليمي — صورة 3" loading="lazy">
       </div>
-    </section>
+    </div>
 
-    <section class="project">
-      <div class="container project__inner">
-
-        <div class="project__media">
-          <img
-            src="../assets/projects/ahly-mall.webp"
-            alt="مول وهوتيل الأهلي، بنغازي، ليبيا"
-            loading="lazy"
-            decoding="async">
+    <!-- The 3 Smaller Projects -->
+    <div class="highlight-grid" style="margin-top: var(--space-xxl);">
+      
+      <article class="highlight-card">
+        <div class="highlight-card__media">
+          <img src="../assets/projects/lathroon-resort.webp" alt="منتجع لاثرون" loading="lazy">
         </div>
-
-        <div class="project__body">
-          <p class="project__label">تجاري</p>
-          <h2>مول وهوتيل الأهلي</h2>
-          <p>
-            يقع مشروع مول وهوتيل الأهلي في مدينة بنغازي النابضة بالحياة، ويمثل معلماً للهدوء العصري على مساحة 40,000 متر مربع.
-          </p>
+        <div class="highlight-card__body">
+          <p class="highlight-card__label">الضيافة</p>
+          <h3>منتجع لاثرون</h3>
+          <p>منتجع ساحلي صُمم ليوفر العزلة والجمال الطبيعي، في لاثرون، ليبيا.</p>
         </div>
+      </article>
 
-      </div>
-    </section>
+      <article class="highlight-card">
+        <div class="highlight-card__media">
+          <img src="../assets/projects/Endair-Towers%20(2).webp" alt="أبراج إندير" loading="lazy">
+        </div>
+        <div class="highlight-card__body">
+          <p class="highlight-card__label">متعدد الاستخدامات</p>
+          <h3>أبراج إندير</h3>
+          <p>ثلاثة أبراج تطل على البحر الأبيض المتوسط — فندق ومركز تجاري ومكاتب في مجمع واحد.</p>
+        </div>
+      </article>
 
+      <article class="highlight-card">
+        <div class="highlight-card__media">
+          <img src="../assets/projects/ahly-mall.webp" alt="مول وهوتيل الأهلي" loading="lazy">
+        </div>
+        <div class="highlight-card__body">
+          <p class="highlight-card__label">تجاري</p>
+          <h3>مول وهوتيل الأهلي</h3>
+          <p>مشروع تجاري وفندقي بمساحة 40,000 متر مربع في قلب بنغازي.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <p style="text-align: center; margin-top: var(--space-xl);">
+      <a href="projects/" class="btn btn--dark">جميع المشاريع ←</a>
+    </p>
+
+  </div>
+</section>
     <!-- Call to action -->
     <section class="cta">
       <div class="container">
@@ -346,6 +349,7 @@
           <ul>
             <li>شارع المقرون، بنغازي</li>
             <li><a href="tel:+218927702555">+218 92 770 2555</a></li>
+            <li><a href="tel:+201001009654">+20 100 100 9654</a></li>
           </ul>
         </div>
 
