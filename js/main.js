@@ -256,6 +256,72 @@ document.addEventListener('keydown', e => {
   }
 });
 /* =========================
+   Archive page: Filters + Search
+   ========================= */
+   const archiveSearchE1=document.getElementById('archiveSearch');
+   const mainE1=document.querySelector('main');
+   if(archiveSearchEl && mainE1){
+    const archiveFilterBtns=Array.from(mainE1.querySelectorAll('.filters__btn'));
+    const contentSections=Array.from(mainE1.querySelectorAll(':scope > section')).
+    filter(s=>
+      !s.classList.contains('search-section')&&
+      !s.classList.contains('cta')&&
+      s.querySelector('.card'));
+      contentSections.forEach(section=>{
+        const heading=(section.querySelector('h2')?.textContent || '').toLowerCase();
+        let category='';
+        if(/residential|urban planning|التخطيط العمراني|سكني/.test(heading))category='residential';
+        else if(/aviation|الطيران/.test(heading)) category='aviation';
+        else if(/transport|النقل/.test(heading)) category='transport';
+        else if(/religious|دينية/.test(heading)) category='religious';
+        else if(/hotels|resorts|الفنادق/.test(heading)) category='hospitality';
+        else if(/healthcare|الصحية/.test(heading)) category='healthcare';
+        else if(/administrative|الإدارية/.test(heading)) category='administrative';
+        Selection.dataset.sectionCategory=category;
+        Selection.querySelectorAll('.card').forEach(card=>{
+          card.dataset.category=category;
+        })
+
+      });
+      mainEl.querySelectorAll('.card').forEach(card=>{
+        const title=(card.querySelector('h3')?.textContent || '');
+        if(/Master plan|444|المخطط الشامل/i.test(title)){
+          card.dataset.category='urban planning';
+        }
+      });
+      let archiveCategory='all';
+      let archiveQuery='';
+      function applyArchiveFilters(){
+        mainE1.querySelectorAll('.card').forEach(card=>{
+          const cat=card.dataset.category || '';
+          const catMatch=archiveCategory=='all' || cat == archiveCategory;
+          const txtMatch=card.textContent.toLowerCase().includes(archiveQuery);
+          card.classList.toggle('is-hidden',!(catMatch && txtMatch));
+
+        });
+        contentSections.forEach(section=> {
+          const visible=section.querySelectorAll('.card:not(.is-hidden)');
+          section.style.display=visible.length>0?'':'none';
+        });
+      }
+      archiveFilterBtns.forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          archiveFilterBtns.forEach(b=>b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          archiveCategory=btn.dataset.filter;
+          applyArchiveFilters();
+        });
+      });
+      archiveSearchEl.addEventListener('input',e=>{
+        archiveQuery=e.target.value.toLowerCase();
+        applyArchiveFilters();
+      });
+      applyArchiveFilters();
+
+
+   }
+
+/* =========================
    Statistics Counter
    ========================= */
 

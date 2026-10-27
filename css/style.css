@@ -1464,3 +1464,7 @@ a[href^="tel:"] {
     aspect-ratio: 4 / 3;
   }
 }
+/* Archive page — hide filtered-out cards */
+.card.is-hidden {
+  display: none;
+}
