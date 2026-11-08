@@ -775,24 +775,23 @@ section { padding: var(--space-xxl) 0; }
   color: var(--color-text);
   font-weight: 700;
 }
-
 @media (max-width: 720px) {
   .carousel {
     position: relative;
     display: block;
-    padding: var(--space-m) 0 var(--space-xl);
+    padding: var(--space-m) 0 var(--space-m);
   }
   .carousel__viewport {
     margin-bottom: 0;
     overflow: hidden;
   }
   .carousel__slide {
-    padding: 0 var(--space-m) 5rem;
+    padding: 0 var(--space-m) 3.5rem;
   }
   .carousel__btn {
     position: absolute;
     top: auto;
-    bottom: var(--space-m);
+    bottom: 0;
     left: auto;
     right: auto;
     transform: none;
@@ -807,7 +806,7 @@ section { padding: var(--space-xxl) 0; }
   .carousel__counter {
     position: absolute;
     top: auto;
-    bottom: calc(var(--space-m) + 12px);
+    bottom: 13px;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
