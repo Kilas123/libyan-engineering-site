@@ -1467,3 +1467,25 @@ a[href^="tel:"] {
 .card.is-hidden {
   display: none;
 }
+/* ============ FOUNDER PHOTO ============ */
+.founder-photo {
+  margin: var(--space-l) auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-bg-soft);
+  max-width: 48rem;   /* ~768px — keeps it from stretching full width */
+}
+
+.founder-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.founder-caption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  padding: var(--space-s);
+  margin: 0;
+  font-weight: 600;
+}
